@@ -13,14 +13,13 @@ fun main() {
     }while(true)
 }
 
-
 class CoffeeMachine {
     private var water: Int = 400
     private var milk: Int = 540
     private var beans: Int = 120
     private var money: Int = 550
     private var cups: Int = 9
-    private val coffeeMap = mapOf(
+    private val coffeeParametersMap = mapOf(
         "espresso" to mapOf("water" to 250, "milk" to 0, "beans" to 16, "money" to 4),
         "latte" to mapOf("water" to 350, "milk" to 75, "beans" to 20, "money" to 7),
         "cappuccino" to mapOf("water" to 200, "milk" to 100, "beans" to 12, "money" to 6)
@@ -56,13 +55,13 @@ class CoffeeMachine {
 
     fun fill() {
         print("Write how many ml of water you want to add:\n> ")
-        water.plusAssign(readln().toInt())
+        water += readln().toInt()
         print("Write how many ml of milk you want to add:\n> ")
-        milk.plusAssign(readln().toInt())
+        milk += readln().toInt()
         print("Write how many grams of coffee beans you want to add:\n> ")
-        beans.plusAssign(readln().toInt())
+        beans += readln().toInt()
         print("Write how many disposable coffee cups you want to add:\n> ")
-        cups.plusAssign(readln().toInt())
+        cups += readln().toInt()
     }
 
     fun take() {
@@ -93,22 +92,10 @@ class CoffeeMachine {
             water -= takeValue(typeCoffee, "water")
             milk -= takeValue(typeCoffee, "milk")
             beans -= takeValue(typeCoffee, "beans")
-            cups.minus(1)
+            cups -= 1
         }
     }
 
-    private fun takeValue(typeCoffee: String, takeIngredients: String) : Int? = coffeeMap[typeCoffee]?.let { it[takeIngredients] }
+    private fun takeValue(typesCoffee: String, takeIngredients: String) : Int = coffeeParametersMap[typesCoffee]!!.let { it[takeIngredients]!! }
 
-}
-
-private operator fun Int.minusAssign(let: Int?) {
-
-}
-
-private operator fun Int.plusAssign(let: Int?) {
-
-}
-
-private operator fun Int.compareTo(let: Int?): Int {
-    return -1
 }

@@ -1,9 +1,10 @@
 fun main() {
     val classCoffee = CoffeeMachine()
     do {
-        print("Write action (buy, fill, take, remaining, exit):\n> ")
+        print("Write action (buy, cost, fill, take, remaining, exit):\n> ")
         when (readln()) {
             "buy" -> classCoffee.buy()
+            "cost" -> classCoffee.cost()
             "fill" -> classCoffee.fill()
             "take" -> classCoffee.take()
             "remaining" -> classCoffee.remaining()
@@ -37,6 +38,14 @@ class CoffeeMachine {
                 " of disposable cups \n" +
                 money +
                 " of money")
+    }
+
+    fun cost() {
+        println("|-----espresso latte cappuccino\n" +
+                "water   ${takeValue("espresso", "water")}     ${takeValue("latte", "water")}     ${takeValue("cappuccino", "water")}\n" +
+                "milk      ${takeValue("espresso", "milk")}      ${takeValue("latte", "milk")}     ${takeValue("cappuccino", "milk")}\n" +
+                "beans    ${takeValue("espresso", "beans")}      ${takeValue("latte", "beans")}      ${takeValue("cappuccino", "beans")}\n" +
+                "money     ${takeValue("espresso", "money")}       ${takeValue("latte", "money")}       ${takeValue("cappuccino", "money")}")
     }
 
     fun buy() {

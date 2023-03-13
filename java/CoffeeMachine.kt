@@ -1,3 +1,5 @@
+import androidx.core.text.isDigitsOnly
+
 fun main() {
     val classCoffee = CoffeeMachine()
     do {
@@ -64,13 +66,13 @@ class CoffeeMachine {
 
     fun fill() {
         print("Write how many ml of water you want to add:\n> ")
-        water += readln().toInt()
+        water += readLines()
         print("Write how many ml of milk you want to add:\n> ")
-        milk += readln().toInt()
+        milk += readLines()
         print("Write how many grams of coffee beans you want to add:\n> ")
-        beans += readln().toInt()
+        beans += readLines()
         print("Write how many disposable coffee cups you want to add:\n> ")
-        cups += readln().toInt()
+        cups += readLines()
     }
 
     fun take() {
@@ -107,4 +109,14 @@ class CoffeeMachine {
 
     private fun takeValue(typesCoffee: String, takeIngredients: String) : Int = coffeeParametersMap[typesCoffee]!!.let { it[takeIngredients]!! }
 
+    private fun readLines(): Int {
+        val b = try {
+            val a = readln()
+            a.toInt()
+        } catch (_: NumberFormatException) {
+            println("Input only numbers! Default value: 0")
+            0
+        }
+        return b
+    }
 }
